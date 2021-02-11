@@ -69,6 +69,6 @@ app.delete("/user/delete/:id", async(req:any, res:any) => {
     }
 })
 
-const server = http.listen(3000, () => {
+const server = http.listen(process.env.PORT || 3000, () => {
     console.log('server started at', server.address().port);
 })

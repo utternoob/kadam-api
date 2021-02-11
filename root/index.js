@@ -150,6 +150,6 @@ app.delete("/user/delete/:id", function (req, res) { return __awaiter(void 0, vo
         }
     });
 }); });
-var server = http.listen(3000, function () {
+var server = http.listen(process.env.PORT || 3000, function () {
     console.log('server started at', server.address().port);
 });
