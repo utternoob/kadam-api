@@ -1,0 +1,4 @@
+fetch all users
+add new user
+update user with amount
+remove user account

@@ -1,0 +1,14 @@
+{
+    "accounts": [
+        {
+            "name": "kanni",
+            "total": 15000,
+            "balance": 9888,
+            "type": "debit",
+            "item": "phone",
+            "transaction": [
+                1500
+            ]
+        }
+    ]
+}
