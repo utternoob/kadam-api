@@ -1,15 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var validator = require('validator');
-var mongoose = require('mongoose');
-var cashSchema = new mongoose.Schema({
+var mongooseSchema = require('mongoose');
+var cashSchema = new mongooseSchema.Schema({
     date: Date,
     amount: Number,
     total: Number,
     balance: Number,
     item: String
 });
-var accountSchema = new mongoose.Schema({
+var accountSchema = new mongooseSchema.Schema({
     name: String,
     total: Number,
     balance: Number,
@@ -17,4 +15,4 @@ var accountSchema = new mongoose.Schema({
     item: String,
     transaction: [Number]
 });
-module.exports = mongoose.model("accounts", accountSchema);
+module.exports = mongooseSchema.model("accounts", accountSchema);

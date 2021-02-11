@@ -16,7 +16,7 @@ app.get("/fetch/users/all", async(req:any, res:any) => {
     try {
         res.send(await accountsModel.find());
     } catch (error) {
-        res.send(500);
+        res.sendStatus(500);
         console.log(error);
     }
 });
@@ -25,17 +25,17 @@ app.get("/fetch/users/all", async(req:any, res:any) => {
 app.post("/add/user", async(req: any, res: any) => {
     try {
         let userAccounts = new accountsModel({
-            name: req.name, 
-            total: req.total,
-            balance: req.total,
-            type: req.type,
-            item: req.item,
-            transactions: []
+            name: req.body.name, 
+            total: req.body.total,
+            balance: req.body.total,
+            type: req.body.type,
+            item: req.body.item,
+            transaction: []
         });
         await userAccounts.save();
-        res.status(200);
+        res.sendStatus(200);
     } catch (error) {
-        res.send(500);
+        res.sendStatus(500);
         console.log(error);
     }
 });
@@ -45,14 +45,14 @@ app.post("/user/update/:id", async(req:any, res:any) => {
     let id = req.params.id;
     try {
         let accounts = await accountsModel.findById(id);
-        let amount = req.transaction;
+        let amount = req.body.transaction;
         let balance = accounts.balance - amount;
         accounts.balance = balance;
         accounts.transaction.push(amount);
         await accountsModel.update(accounts);
-        res.status(200);
+        res.sendStatus(200);
     } catch (error) {
-        res.send(500);
+        res.sendStatus(500);
         console.log(error);
     }
 });
@@ -62,9 +62,9 @@ app.delete("/user/delete/:id", async(req:any, res:any) => {
     let id = req.params.id;
     try {
         await accountsModel.findByIdAndRemove(id);
-        res.status(200);
+        res.sendStatus(200);
     } catch (error) {
-        res.send(500);
+        res.sendStatus(500);
         console.log(error);
     }
 })

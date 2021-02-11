@@ -1,8 +1,6 @@
-import { mongo } from "mongoose";
 
-let validator = require('validator');
-let mongoose = require('mongoose');
-let cashSchema = new mongoose.Schema({
+let mongooseSchema = require('mongoose');
+let cashSchema = new mongooseSchema.Schema({
     date: Date,
     amount: Number,
     total: Number,
@@ -10,7 +8,7 @@ let cashSchema = new mongoose.Schema({
     item: String
 });
 
-let accountSchema = new mongoose.Schema({
+let accountSchema = new mongooseSchema.Schema({
     name: String,
     total: Number,
     balance: Number,
@@ -19,4 +17,4 @@ let accountSchema = new mongoose.Schema({
     transaction: [Number]
 });
 
-module.exports = mongoose.model("accounts", accountSchema);
+module.exports = mongooseSchema.model("accounts", accountSchema);

@@ -59,7 +59,7 @@ app.get("/fetch/users/all", function (req, res) { return __awaiter(void 0, void 
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _c.sent();
-                res.send(500);
+                res.sendStatus(500);
                 console.log(error_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -74,21 +74,21 @@ app.post("/add/user", function (req, res) { return __awaiter(void 0, void 0, voi
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 userAccounts = new accountsModel({
-                    name: req.name,
-                    total: req.total,
-                    balance: req.total,
-                    type: req.type,
-                    item: req.item,
-                    transactions: []
+                    name: req.body.name,
+                    total: req.body.total,
+                    balance: req.body.total,
+                    type: req.body.type,
+                    item: req.body.item,
+                    transaction: []
                 });
                 return [4 /*yield*/, userAccounts.save()];
             case 1:
                 _a.sent();
-                res.status(200);
+                res.sendStatus(200);
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _a.sent();
-                res.send(500);
+                res.sendStatus(500);
                 console.log(error_2);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -108,18 +108,18 @@ app.post("/user/update/:id", function (req, res) { return __awaiter(void 0, void
                 return [4 /*yield*/, accountsModel.findById(id)];
             case 2:
                 accounts = _a.sent();
-                amount = req.transaction;
+                amount = req.body.transaction;
                 balance = accounts.balance - amount;
                 accounts.balance = balance;
                 accounts.transaction.push(amount);
                 return [4 /*yield*/, accountsModel.update(accounts)];
             case 3:
                 _a.sent();
-                res.status(200);
+                res.sendStatus(200);
                 return [3 /*break*/, 5];
             case 4:
                 error_3 = _a.sent();
-                res.send(500);
+                res.sendStatus(500);
                 console.log(error_3);
                 return [3 /*break*/, 5];
             case 5: return [2 /*return*/];
@@ -139,11 +139,11 @@ app.delete("/user/delete/:id", function (req, res) { return __awaiter(void 0, vo
                 return [4 /*yield*/, accountsModel.findByIdAndRemove(id)];
             case 2:
                 _a.sent();
-                res.status(200);
+                res.sendStatus(200);
                 return [3 /*break*/, 4];
             case 3:
                 error_4 = _a.sent();
-                res.send(500);
+                res.sendStatus(500);
                 console.log(error_4);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
